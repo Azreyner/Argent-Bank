@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import argentBankLogo from "../asset/argentBankLogo.png";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deconnexion, updateName } from "../Redux/Actions/ArgenBankActions";
 
 const User = () => {
+  const [editNameIsClicked, setEditNameIsClicked] = useState(false);
+  const store = useSelector((state) => state);
+  const [prenom, setPrenom] = useState("");
+  const [nom, setNom] = useState("");
+  const dispatch = useDispatch();
+
+  const handleDeconnexion = () => {
+    dispatch(deconnexion());
+  };
+
+  const updateNomPrenom = () => {
+    dispatch(updateName(prenom, nom));
+  };
+
+  /*useEffect(() => {
+    dispatch(getUserName());
+  }, []);*/
+
+  //console.log(editNameIsClicked);
+
   return (
     <div className="user">
       <nav className="main-nav">
@@ -21,7 +43,13 @@ const User = () => {
           </Link>
           <Link className="main-nav-item" to={`/`}>
             <i className="fa fa-sign-out"></i>
-            Sign Out
+            <button
+              type="button"
+              className="sign-out-button"
+              onClick={handleDeconnexion}
+            >
+              Sign Out
+            </button>
           </Link>
         </div>
       </nav>
@@ -30,9 +58,42 @@ const User = () => {
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            {store.firstName + " " + store.lastName}
           </h1>
-          <button className="edit-button">Edit Name</button>
+          {!editNameIsClicked ? (
+            <button
+              className="edit-button"
+              onClick={() => setEditNameIsClicked(true)}
+            >
+              Edit Name
+            </button>
+          ) : (
+            <div className="edition">
+              <div className="edition__champs">
+                <input
+                  type="text"
+                  onChange={(e) => setPrenom(e.target.value)}
+                />
+                <input type="text" onChange={(e) => setNom(e.target.value)} />
+              </div>
+              <div className="edition__boutons">
+                <button
+                  type="button"
+                  className="sign-in-button"
+                  onClick={updateNomPrenom}
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  className="sign-in-button"
+                  onClick={() => setEditNameIsClicked(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         <h2 className="sr-only">Accounts</h2>
         <section className="account">

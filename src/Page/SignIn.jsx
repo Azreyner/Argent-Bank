@@ -1,9 +1,24 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { connexion } from "../Redux/Actions/ArgenBankActions";
 import argentBankLogo from "../asset/argentBankLogo.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import User from "./User";
 
 const SignIn = () => {
+  const state = useSelector((state) => state);
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+
+  const handleConnexion = () => {
+    dispatch(connexion(userName, password));
+  };
+
+  if (state.token || localStorage.getItem("token")) {
+    return <Navigate to="/user" />;
+  }
+
   return (
     <div className="signIn">
       <nav className="main-nav">
@@ -28,21 +43,34 @@ const SignIn = () => {
           <h1>Sign In</h1>
           <form>
             <div className="input-wrapper">
-              <label for="username">Username</label>
-              <input type="text" id="username" />
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                onChange={(e) => setUserName(e.target.value)}
+              />
             </div>
             <div className="input-wrapper">
-              <label for="password">Password</label>
-              <input type="password" id="password" />
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div className="input-remember">
               <input type="checkbox" id="remember-me" />
-              <label for="remember-me">Remember me</label>
+              <label htmlFor="remember-me">Remember me</label>
             </div>
-            <Link className="main-nav-item" to={`/signIn`}>
-              Sign In
+            <Link className="main-nav-item" to={`/user`}>
+              <button
+                type="button"
+                className="sign-in-button"
+                onClick={handleConnexion}
+              >
+                Sign In
+              </button>
             </Link>
-            <button className="sign-in-button">Sign In</button>
           </form>
         </section>
       </main>
