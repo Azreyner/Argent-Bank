@@ -26,15 +26,12 @@ export const connexion = (email, mdp) => {
 export const deconnexion = () => ({ type: "DECONNEXION" });
 
 /* Uniquement quand la personne sera connecté */
-/*export const getUserName = () => {
+export const getUserName = () => {
   return async (dispatch, getState) => {
     const response = await axios
-      .post("/profile", {
-        headers: {
-          Authorization: "Bearer" + getState.token,
-        },
-      })
+      .post("/profile")
       .then(function (response) {
+        console.log("LA REPONSE DE /PROFILE :", response);
         dispatch({
           type: "GETNAME",
           lePrenom: response.data.body.firstName,
@@ -45,7 +42,7 @@ export const deconnexion = () => ({ type: "DECONNEXION" });
         console.log(error);
       });
   };
-};*/
+};
 
 export const updateName = (prenom, nom) => {
   return async (dispatch, getState) => {

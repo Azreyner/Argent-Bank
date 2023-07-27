@@ -34,21 +34,23 @@ function reducer(state = initialState, action) {
       return { ...state, firstName: action.lePrenom, lastName: action.leNom };
     case "UPDATE":
       return { ...state, firstName: action.lePrenom, lastName: action.leNom };
+    case "SET_TOKEN":
+      return { ...state, token: action.payload };
     default:
       return state;
   }
 }
 
-const verificationAPI = (store) => {
+/*const verificationAPI = (store) => {
   return (next) => {
     return (action) => {
       //console.log("middleWare", action);
       return next(action);
     };
   };
-};
+};*/
 
 export const store = createStore(
   reducer,
-  compose(applyMiddleware(verificationAPI, logger, thunk), ReactReduxDevTools)
+  compose(applyMiddleware(logger, thunk), ReactReduxDevTools)
 );

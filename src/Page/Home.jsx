@@ -4,27 +4,12 @@ import bankTree from "../asset/bank-tree.jpeg";
 import iconChat from "../asset/icon-chat.png";
 import iconeMoney from "../asset/icon-money.png";
 import iconeSecurity from "../asset/icon-security.png";
+import Header from "../component/Header";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <div className="pageHome">
-      <nav className="main-nav">
-        <Link className="main-nav-logo" to={`/`}>
-          <img
-            className="main-nav-logo-image"
-            src={argentBankLogo}
-            alt="Argent Bank Logo"
-          />
-          <h1 className="sr-only">Argent Bank</h1>
-        </Link>
-        <div>
-          <Link className="main-nav-item" to={`/signIn`}>
-            <i className="fa fa-user-circle"></i>
-            Sign In
-          </Link>
-        </div>
-      </nav>
       <main>
         <div className="hero">
           <section className="hero-content">

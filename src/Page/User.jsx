@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import argentBankLogo from "../asset/argentBankLogo.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deconnexion, updateName } from "../Redux/Actions/ArgenBankActions";
+import { updateName, getUserName } from "../Redux/Actions/ArgenBankActions";
+import Header from "../component/Header";
 
 const User = () => {
   const [editNameIsClicked, setEditNameIsClicked] = useState(false);
@@ -11,54 +12,24 @@ const User = () => {
   const [nom, setNom] = useState("");
   const dispatch = useDispatch();
 
-  const handleDeconnexion = () => {
-    dispatch(deconnexion());
-  };
-
   const updateNomPrenom = () => {
     dispatch(updateName(prenom, nom));
   };
 
-  /*useEffect(() => {
+  useEffect(() => {
     dispatch(getUserName());
-  }, []);*/
+  }, []);
 
   //console.log(editNameIsClicked);
 
   return (
     <div className="user">
-      <nav className="main-nav">
-        <Link className="main-nav-logo" to={`/`}>
-          <img
-            className="main-nav-logo-image"
-            src={argentBankLogo}
-            alt="Argent Bank Logo"
-          />
-          <h1 className="sr-only">Argent Bank</h1>
-        </Link>
-        <div>
-          <Link className="main-nav-item" to={`/user`}>
-            <i className="fa fa-user-circle"></i>
-            Tony
-          </Link>
-          <Link className="main-nav-item" to={`/`}>
-            <i className="fa fa-sign-out"></i>
-            <button
-              type="button"
-              className="sign-out-button"
-              onClick={handleDeconnexion}
-            >
-              Sign Out
-            </button>
-          </Link>
-        </div>
-      </nav>
       <main className="main bg-dark">
         <div className="header">
           <h1>
             Welcome back
             <br />
-            {store.firstName + " " + store.lastName}
+            {store.firstName && store.firstName + " " + store.lastName}
           </h1>
           {!editNameIsClicked ? (
             <button

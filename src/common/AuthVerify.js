@@ -18,6 +18,8 @@ const AuthVerify = (props) => {
     if (leToken) {
       const decodedJwt = parseJwt(leToken);
 
+      console.log(decodedJwt.exp, Date.now());
+
       if (decodedJwt.exp * 1000 < Date.now()) {
         console.log("Le token est expiré");
         props.logOut();
