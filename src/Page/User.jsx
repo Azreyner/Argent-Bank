@@ -44,20 +44,26 @@ const User = () => {
                 <input
                   type="text"
                   onChange={(e) => setPrenom(e.target.value)}
+                  placeholder="Prénom"
                 />
-                <input type="text" onChange={(e) => setNom(e.target.value)} />
+                <input
+                  type="text"
+                  onChange={(e) => setNom(e.target.value)}
+                  placeholder="Nom"
+                />
               </div>
               <div className="edition__boutons">
                 <button
                   type="button"
-                  className="sign-in-button"
+                  className="sign-in-button boutonEdit"
                   onClick={updateNomPrenom}
                 >
                   Save
                 </button>
                 <button
                   type="button"
-                  className="sign-in-button"
+                  className="sign-in-button boutonEdit"
+                  id="bouton"
                   onClick={() => setEditNameIsClicked(false)}
                 >
                   Cancel

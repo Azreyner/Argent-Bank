@@ -166,6 +166,23 @@ body {
   color: #fff;
 }
 
+.edition {
+  &__champs,
+  &__boutons {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    & input {
+      margin-top: 10px;
+    }
+  }
+}
+
+.boutonEdit {
+  max-width: 300px;
+}
+
 .sign-in-content {
   box-sizing: border-box;
   background-color: white;
