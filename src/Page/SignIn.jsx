@@ -6,6 +6,7 @@ import setBearer, {
 } from "../Redux/Actions/ArgenBankActions";
 import { isAuthenticated } from "../Redux/selectors/is-authenticated";
 import { Link, Navigate } from "react-router-dom";
+import Header from "../component/Header";
 
 const SignIn = () => {
   const state = useSelector((state) => state);
@@ -30,6 +31,7 @@ const SignIn = () => {
 
   return (
     <div className="signIn">
+      <Header key={window.location.toString()} />
       <main className="main bg-dark">
         <section className="sign-in-content">
           <i className="fa fa-user-circle sign-in-icon"></i>

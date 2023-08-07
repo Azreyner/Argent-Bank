@@ -24,6 +24,7 @@ const User = () => {
 
   return (
     <div className="user">
+      <Header key={window.location.toString()} />
       <main className="main bg-dark">
         <div className="header">
           <h1>

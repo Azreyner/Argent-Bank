@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="pageHome">
+      <Header key={window.location.toString()} />
       <main>
         <div className="hero">
           <section className="hero-content">
