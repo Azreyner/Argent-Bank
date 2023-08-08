@@ -1,8 +1,15 @@
 export const isAuthenticated = (state) => {
-  if (!state.token) {
+  let tokenIsExpired = null;
+  if (!state.token && !localStorage.getItem("token")) {
     return false;
   }
-  const tokenIsExpired = isTokenExpired(state.token);
+
+  if (state.token) {
+    tokenIsExpired = isTokenExpired(state.token);
+  } else {
+    tokenIsExpired = isTokenExpired(localStorage.getItem("token"));
+  }
+
   return !tokenIsExpired;
 };
 

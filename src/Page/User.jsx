@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import argentBankLogo from "../asset/argentBankLogo.png";
-import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateName, getUserName } from "../Redux/Actions/ArgenBankActions";
+import setBearer, {
+  updateName,
+  getUserName,
+} from "../Redux/Actions/ArgenBankActions";
 import Header from "../component/Header";
+import { isAuthenticated } from "../Redux/selectors/is-authenticated";
 
 const User = () => {
   const [editNameIsClicked, setEditNameIsClicked] = useState(false);
   const store = useSelector((state) => state);
   const [prenom, setPrenom] = useState("");
   const [nom, setNom] = useState("");
+  const userAuthenticated = useSelector(isAuthenticated);
   const dispatch = useDispatch();
 
   const updateNomPrenom = () => {
@@ -17,8 +22,21 @@ const User = () => {
   };
 
   useEffect(() => {
+    if (store.token) {
+      setBearer(store.token);
+    } else {
+      setBearer(localStorage.getItem("token"));
+    }
     dispatch(getUserName());
   }, []);
+
+  /*if (userAuthenticated) {
+    if (store.token) {
+      setBearer(store.token);
+    } else {
+      setBearer(localStorage.getItem("token"));
+    }
+  }*/
 
   //console.log(editNameIsClicked);
 

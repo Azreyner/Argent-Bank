@@ -32,16 +32,19 @@ function Header() {
               Sign In
             </Link>
           ) : (
-            <Link className="main-nav-item" to={`/`}>
-              <i className="fa fa-sign-out"></i>
-              <button
-                type="button"
-                className="sign-out-button"
-                onClick={handleDeconnexion}
-              >
-                Sign Out
-              </button>
-            </Link>
+            <div id="logout">
+              <h4>{store.firstName}</h4>
+              <Link className="main-nav-item" to={`/`}>
+                <i className="fa fa-sign-out"></i>
+                <button
+                  type="button"
+                  className="sign-out-button"
+                  onClick={handleDeconnexion}
+                >
+                  Sign Out
+                </button>
+              </Link>
+            </div>
           )}
         </div>
       </nav>

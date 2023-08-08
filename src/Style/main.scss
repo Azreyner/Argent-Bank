@@ -43,6 +43,13 @@ body {
   padding: 5px 20px;
 }
 
+.main-nav div #logout {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 170px;
+}
+
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;

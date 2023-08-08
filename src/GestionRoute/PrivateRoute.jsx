@@ -13,6 +13,7 @@ function PrivateRoute({ children }) {
   const userAuthenticated = useSelector(isAuthenticated);
 
   if (!userAuthenticated) {
+    console.log("deconnecter");
     dispatch(deconnexion());
     // not logged in so redirect to login page with the return url
     return <Navigate to="/signIn" /*state={{ from: history.location }}*/ />;
